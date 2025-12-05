@@ -20,8 +20,15 @@
                             (click)="$event.stopPropagation()">
                     </div>
                     <div class="filter-buttons">
-                        <button class="btn-primary" (click)="applyFilter()">Apply</button>
-                        <button class="btn-secondary" (click)="resetFilter()">Reset</button>
+                    
+                               <app-lbutton [type]="'primary'" text="APPLY"  (onClick)="applyFilter()"> 
+                </app-lbutton>
+                   <app-lbutton [type]="'secondary'" text="Reset" (onClick)="resetFilter()">
+
+                </app-lbutton>
+                      
+              
+                     
                     </div>
                 </div>
 
@@ -93,16 +100,14 @@
 
         <div class="edit-panel">
             <div class="panel-header">
-                <button class="btn-primary icon-btn" (click)="saveDescription(descTextarea.value)">
-                    <img class="icon" src="save-outline.svg" alt="Save" />
-                    <span class="material-icons btn-icon"> SAVE</span>
+             
+                  <app-lbutton [type]="'primary'" text="SAVE" icon="save.svg" (click)="closePanel()">
 
-                </button>
-                <button class="btn-secondary icon-btn" (click)="closePanel()">
-                    <img class="icon" src="close-outline.svg" alt="Close" />
-                    <span class="material-icons btn-icon"> CLOSE</span>
+                </app-lbutton>
+                <app-lbutton [type]="'secondary'" text="CLOSE" icon="close-outline.svg" (click)="closePanel()">
 
-                </button>
+                </app-lbutton>
+         
             </div>
 
             <div class="panel-content">

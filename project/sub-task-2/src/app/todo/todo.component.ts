@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {  TodoService } from './services/impl/todo.service';
-import { EditPanelComponent } from './components/edit-panel.component';
 import { ITodo } from './models/todo.interface';
+import { LbuttonComponent } from "../components/lbutton/lbutton.component";
 
 @Component({
     selector: 'app-todo.component',
     templateUrl: './todo.component.html',
     styleUrl: './todo.component.scss',
-    imports: [CommonModule, FormsModule]
+    imports: [CommonModule, FormsModule, LbuttonComponent]
 })
 export class TodoComponent {
 constructor(public todoService: TodoService) {
