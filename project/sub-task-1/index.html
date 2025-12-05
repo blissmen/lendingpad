@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Todo Mirror (Vanilla)</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+      <div class="main-content">
+        <!-- LEFT: filters + list -->
+        <div class="list-section" id="listSection">
+          <div class="filters-desktop-header">
+            <span class="filters-desktop-title">Creation Date</span>
+          </div>
+
+          <button class="filter-toggle" id="filterToggleBtn">FILTERS</button>
+
+          <div class="filters-container" id="filtersContainer">
+            <div class="filters-header">
+              <span>FILTERS</span>
+              <button class="close-btn" id="filtersCloseBtn">
+                <span class="material-icons">close</span>
+              </button>
+            </div>
+
+            <div class="filters-body">
+              <div class="filters-body-title">Creation Date</div>
+              <div class="date-filters">
+                <input type="date" id="startDateInput" placeholder="mm/dd/yyyy" />
+                <span class="date-separator">–</span>
+                <input type="date" id="endDateInput" placeholder="mm/dd/yyyy" />
+              </div>
+              <div class="filter-buttons">
+                <button class="btn-primary" id="applyFilterBtn">APPLY</button>
+                <button class="btn-secondary" id="resetFilterBtn">RESET</button>
+              </div>
+            </div>
+          </div>
+
+          <table class="todo-table">
+            <thead>
+              <tr>
+                <th class="col-check"></th>
+                <th class="col-icon"></th>
+                <th class="col-name" id="nameHeader">
+                  Name
+                  <span id="nameSortIndicator"></span>
+                </th>
+                <th class="col-date" id="dateHeader">
+                  Creation Date
+                  <span id="dateSortIndicator"></span>
+                </th>
+                <th class="col-trash"></th>
+              </tr>
+            </thead>
+            <tbody id="todoTbody">
+              <!-- rows rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- RIGHT: sidebar for description edit -->
+        <div class="panel-section" id="panelSection">
+          <div class="panel-container">
+            <div class="panel-header">
+              <button class="btn-primary" id="saveDescBtn">
+                <span class="material-icons btn-icon">save</span> SAVE
+              </button>
+              <button class="btn-secondary" id="closeDescBtn">
+                <span class="material-icons btn-icon">close</span> CLOSE
+              </button>
+            </div>
+            <div class="panel-content">
+              <label for="descTextarea">Description</label>
+              <textarea id="descTextarea"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

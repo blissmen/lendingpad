@@ -1,0 +1,493 @@
+/* Global resets and base typography */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #E5E9FF;
+}
+
+.card {
+  width: 100%;
+  max-width: 1100px; // adjust to match screenshot width
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+  overflow: hidden; // keeps internal content nicely clipped
+}
+.header{
+  font-size: 18px;
+  font-weight: bolder;
+
+}
+
+.display-flex {
+  display: flex;
+}
+
+/* Layout: main content split between list and panel (desktop) */
+.main-content {
+  display: flex;
+  padding: 24px 32px 32px 32px;
+}
+
+.list-section {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.panel-section {
+  width: 350px;
+  background: #fff;
+  /* make sure it paints on top of the list */
+  position: relative;
+  z-index: 10;
+
+  /* this is the important part – shadow on the LEFT side */
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Filter bar / sidebar styling */
+.filter-toggle {
+  display: none;
+  /* Only visible on mobile via media query */
+  border: 2px solid #AB5DE9;
+  background: none;
+  color: #AB5DE9;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.filters-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #EEE;
+  margin-bottom: 1rem;
+}
+
+.filters-header {
+  display: none;
+  /* Only for mobile overlay */
+}
+
+.date-filters {
+  display: inline-flex;
+  align-items: center;
+}
+
+.date-filters input {
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+}
+
+.date-filters input:first-child {
+  width: 200px;
+  height: 50px;
+  margin-right: 0.3rem;
+}
+$checkbox-size: 18px;
+$checkbox-bg: #ffffff;
+$checkbox-border: #cfcfcf;
+$checkbox-inner-color: #9b4cff; // purple like screenshot
+$checkbox-inner-size: 10px; // the small filled rectangle
+
+.custom-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+
+  input[type='checkbox'] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    border: 2px solid $checkbox-border;
+    border-radius: 4px;
+    background: $checkbox-bg;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+
+    // inner colored square
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: $checkbox-inner-color;
+      border-radius: 2px;
+      transform: translate(-50%, -50%);
+      transition: width 0.15s ease, height 0.15s ease;
+    }
+
+    // checked state shows inner square
+    &:checked::after {
+      width: $checkbox-inner-size;
+      height: $checkbox-inner-size;
+    }
+  }
+
+  // optional: label text next to checkbox
+  span {
+    font-size: 14px;
+    color: #333;
+  }
+}
+.date-filters input:last-child {
+  width: 200px;
+  height: 50px;
+}
+
+.date-separator {
+  margin: 0 0.2rem;
+}
+
+.filter-buttons button {
+  margin-left: 0.5rem;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #AB5DE9;
+  color: #fff;
+  border: none;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #F171F3;
+  border: 2px solid #F171F3;
+}
+
+/* To-do table styling */
+.todo-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.todo-table th,
+.todo-table td {
+  text-align: left;
+  padding: 0.5rem;
+  font-size: 14px;
+}
+
+.todo-table th {
+  background: #F8F8F8;
+  color: #7a7bb0;
+  border-bottom: 1px solid #EEE;
+}
+.row {
+  align-items: center;
+  padding: 12px 16px;
+  border-top: 1px solid #eceefa;
+  gap: 12px;
+}
+
+.row:hover {
+  background: #f7f7ff;
+  cursor: pointer;
+}
+
+.todo-table td {
+  border-bottom: 1px solid #EEE;
+  color: #333333;
+  vertical-align: middle;
+}
+
+.todo-table tbody tr:hover {
+  background: #F9F9FF;
+  cursor: pointer;
+}
+
+.todo-table tbody tr.selected {
+  background: #E3E9FF;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #777;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #777;
+}
+
+.material-icons {
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+/* Form inputs (text, date) general style */
+input[type="text"],
+input[type="date"],
+
+textarea {
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  font: inherit;
+}
+$date-placeholder: #888888; // soft grey matching your UI
+$date-text: #333333;         // normal text
+.delete{
+ width: 18px;
+  height: 18px;
+  color: #E3496E; 
+}
+input[type="date"]{
+color: $date-text;
+  font-size: 14px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #eceff5;
+  border-radius: 4px;
+  background: #ffffff;
+
+  // Placeholder for Chrome/Safari
+  &::-webkit-input-placeholder {
+    color: $date-placeholder;
+    opacity: 1;
+  }
+
+  // The actual greyed-out text you see before selecting a date
+  &::-webkit-datetime-edit {
+    color: $date-placeholder;
+  }
+
+  // Keep slashes grey
+  &::-webkit-datetime-edit-fields-wrapper {
+    color: $date-placeholder;
+  }
+
+  // Year, month, day fields before typing
+  &::-webkit-datetime-edit-year-field,
+  &::-webkit-datetime-edit-month-field,
+  &::-webkit-datetime-edit-day-field {
+    color: $date-placeholder;
+  }
+
+  // Optional: remove the calendar icon or recolor it
+  &::-webkit-calendar-picker-indicator {
+    opacity: 0.6; // soften it
+    filter: grayscale(100%);
+  }
+}
+input:focus,
+textarea:focus {
+  outline: 2px solid #AB5DE9;
+  outline-offset: 0;
+}
+
+/* Overlay that covers the whole viewport */
+.edit-overlay {
+  position: fixed;
+  inset: 0;
+  /* top:0 right:0 bottom:0 left:0 */
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1000;
+  /* above everything in the card */
+}
+
+/* Dimmed background */
+.edit-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15); // light grey / dim
+}
+
+/* Right slide-in panel */
+.edit-panel {
+  position: relative;
+  z-index: 1001;
+  /* above the backdrop */
+  width: 420px;
+  /* tweak to match your design */
+  max-width: 100%;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: -4px 0 18px rgba(0, 0, 0, 0.22);
+  padding: 24px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Panel header + body as before */
+.panel-header {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.panel-content label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  /* space between the icon and the text */
+  padding: 0.45rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.icon-btn .icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.panel-content textarea {
+  width: 100%;
+  height: 130px;
+  padding: 8px;
+  font: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+/* Optional: small tweak for mobile – panel takes full width */
+@media (max-width: 700px) {
+  .edit-panel {
+    width: 100%;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.25);
+  }
+}
+
+
+/* Responsive design for mobile */
+@media (max-width: 600px) {
+
+  /* Show filter toggle button, style filter sidebar overlay */
+  .filter-toggle {
+    display: inline-block;
+  }
+
+  .filters-container {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    margin-bottom: 0;
+    z-index: 1000;
+  }
+
+  .filters-container.open {
+    left: 0;
+  }
+
+  .filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .filters-header .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+
+  .filters-container label {
+    margin: 0.5rem 0;
+    font-weight: 600;
+  }
+
+  .filters-container .date-filters {
+    display: block;
+  }
+
+  .date-filters input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .date-separator {
+    display: none;
+  }
+
+  .filter-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* On mobile, panel becomes full-screen overlay */
+  .main-content {
+    display: block;
+    overflow: visible;
+  }
+
+  .panel-section {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 1001;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+  }
+}
+/* Remove the calendar icon (Chrome, Edge, Safari) */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+}
+
+/* Remove spin buttons and extra styling on some browsers */
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+
+/* Optional: make the input look like plain text field */
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+}

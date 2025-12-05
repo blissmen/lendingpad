@@ -1,2 +1,115 @@
-<!-- Todo Code -->
-Loaded
+<div class="page">
+    <div class="card">
+        <div class="main-content">
+            <div class="list-section">
+                <h1 class="header">Creation Date:</h1>
+                <button class="filter-toggle" (click)="openFilterPanel()">Filters</button>
+
+                <div class="filters-container" [class.open]="mobileFilterOpen">
+
+                    <div class="filters-header">
+                        <span>FILTERS</span>
+                        <button class="close-btn" (click)="mobileFilterOpen = false">&times;</button>
+                    </div>
+
+                    <div class="date-filters">
+                        <input type="date" [(ngModel)]="filterStartDraftModel" placeholder="mm/dd/yyyy"
+                            (click)="$event.stopPropagation()">
+                        <span class="date-separator">–</span>
+                        <input type="date" [(ngModel)]="filterEndDraftModel" placeholder="mm/dd/yyyy"
+                            (click)="$event.stopPropagation()">
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="btn-primary" (click)="applyFilter()">Apply</button>
+                        <button class="btn-secondary" (click)="resetFilter()">Reset</button>
+                    </div>
+                </div>
+
+                <table class="todo-table">
+                    <thead>
+                        <tr>
+                            <th><!-- Checkbox column header (for select-all, left empty) --></th>
+                            <th class="display-flex" (click)="sortBy('name')">
+                                <span>Name </span>
+                                <span *ngIf="sortKey() === 'name'">
+                                    <img width="20px"
+                                        [src]="sortAsc() ? 'chevron-down-outline.svg' : 'chevron-up-outline.svg'"
+                                        alt="Sort direction" />
+                                </span>
+                            </th>
+                            <th (click)="sortBy('date')">
+                            <th class="display-flex" (click)="sortBy('date')">
+                                <span>Creation Date </span>
+                                <span *ngIf="sortKey() === 'date'">
+                                    <img width="20px"
+                                        [src]="sortAsc() ? 'chevron-down-outline.svg' : 'chevron-up-outline.svg'"
+                                        alt="Sort direction" />
+                                </span>
+                            </th>
+                            <th><!-- Actions column --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row" *ngFor="let item of visibleTodos()"
+                            [class.selected]="selectedItem && selectedItem.id === item.id">
+                            <td>
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" [checked]="item.completed" (change)="toggleDone(item)"
+                                        (click)="$event.stopPropagation()">
+                                    <span class="custom-checkbox"></span>
+                                </label>
+                                <!-- <input type="checkbox" [checked]="item.completed" (change)="toggleDone(item)"
+                                    (click)="$event.stopPropagation()"> -->
+                            </td>
+                            <td>
+                                <!-- Item name (inline editable) -->
+                                <div>
+                                    <button class="icon-btn" (click)="openDescription(item); $event.stopPropagation()">
+                                        <img width="20px" src="create-outline.svg" alt="edit" />
+                                    </button>
+                                    <span [ngClass]="{'completed': item.completed}">{{ item.title }}</span>
+
+                                </div>
+
+                            </td>
+                            <td>{{ item.creationDate | date:'MM/dd/yyyy' }}</td>
+                            <td>
+                                <button class="icon-btn" (click)="deleteItem(item); $event.stopPropagation()">
+                                   <svg xmlns="http://www.w3.org/2000/svg" class="delete" viewBox="0 0 512 512"><path d="M112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M80 112h352"/><path d="M192 112V72h0a23.93 23.93 0 0124-24h80a23.93 23.93 0 0124 24h0v40M256 176v224M184 176l8 224M328 176l-8 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Right section: description edit panel (visible when an item is selected) -->
+
+
+    @if (selectedItem) {
+    <div class="edit-overlay">
+        <div class="edit-backdrop" (click)="closePanel()"></div>
+
+        <div class="edit-panel">
+            <div class="panel-header">
+                <button class="btn-primary icon-btn" (click)="saveDescription(descTextarea.value)">
+                    <img class="icon" src="save-outline.svg" alt="Save" />
+                    <span class="material-icons btn-icon"> SAVE</span>
+
+                </button>
+                <button class="btn-secondary icon-btn" (click)="closePanel()">
+                    <img class="icon" src="close-outline.svg" alt="Close" />
+                    <span class="material-icons btn-icon"> CLOSE</span>
+
+                </button>
+            </div>
+
+            <div class="panel-content">
+                <label for="descTextarea">Description</label>
+                <textarea id="descTextarea" #descTextarea [ngModel]="selectedItem.title"></textarea>
+            </div>
+        </div>
+    </div>
+    }
+</div>
