@@ -9,15 +9,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './lbutton.component.scss'
 })
 export class LbuttonComponent {
-  closePanel() {
-    throw new Error('Method not implemented.');
-  }
-  @Output() click = new EventEmitter<void>();
+
+  @Output() onbClick = new EventEmitter<void>();
 
   @Input() type: 'primary' | 'secondary' = 'primary';
   @Input() text: string = '';
   @Input() icon: string = '';
   onClick() {
-    this.click.emit();
+    this.onbClick.emit();
   }
 } 

@@ -22,10 +22,12 @@ export class TodoService extends TodoBaseService {
         throw new Error('Method not implemented.');
     }
     override deleteTodo(id: number): void {
-        throw new Error('Method not implemented.');
+        this.todos.update(list => list.filter(t => t.id !== id));
     }
     override updateTodo(id: number, changes: Partial<ITodo>): void {
-        throw new Error('Method not implemented.');
+        this.todos.set(this.todos().map(t =>
+            t.id === id ? { ...t, ...changes } : t
+        ));
     }
 
 
@@ -46,34 +48,19 @@ export class TodoService extends TodoBaseService {
 
     // Signal holding the list of to-do items
     public todos = signal<ITodo[]>([]);
+    
     private randomDate(start: Date, end: Date): Date {
         return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
     }
     /** Mark an item as done/undone */
     toggleDone(item: ITodo): void {
-        this.todos.update(list => {
-            const idx = list.findIndex(t => t.id === item.id);
-            if (idx > -1) {
-                const updated = { ...list[idx], done: !list[idx].completed };
-                list.splice(idx, 1, updated);
-            }
-            return list;
-        });
+        this.updateTodo(item.id, { completed: !item.completed });
     }
-
-
 
     /** Update an item's description */
     updateDescription(item: ITodo, newDesc: string): void {
-        console.log("UpdateName called with:", item, newDesc);
-        this.todos.set(this.todos().map(t =>
-            t.id === item.id ? { ...t, title: newDesc } : t
-        ));
-        console.log("Updated todos:", this.todos());
+      this.updateTodo(item.id, { title: newDesc });
     }
 
-    /** Delete an item from the list */
-    delete(item: ITodo): void {
-        this.todos.update(list => list.filter(t => t.id !== item.id));
-    }
+ 
 }

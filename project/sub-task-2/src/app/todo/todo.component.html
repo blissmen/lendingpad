@@ -21,10 +21,9 @@
                     </div>
                     <div class="filter-buttons">
                     
-                               <app-lbutton [type]="'primary'" text="APPLY"  (onClick)="applyFilter()"> 
+                               <app-lbutton [type]="'primary'" text="APPLY"  (onbClick)="applyFilter()"> 
                 </app-lbutton>
-                   <app-lbutton [type]="'secondary'" text="Reset" (onClick)="resetFilter()">
-
+                   <app-lbutton [type]="'secondary'" text="Reset" (onbClick)="resetFilter()">
                 </app-lbutton>
                       
               
@@ -101,10 +100,10 @@
         <div class="edit-panel">
             <div class="panel-header">
              
-                  <app-lbutton [type]="'primary'" text="SAVE" icon="save.svg" (click)="closePanel()">
+                  <app-lbutton [type]="'primary'" text="SAVE" icon="save.svg" (onbClick)="saveDescription(descTextarea .value)">
 
                 </app-lbutton>
-                <app-lbutton [type]="'secondary'" text="CLOSE" icon="close-outline.svg" (click)="closePanel()">
+                <app-lbutton [type]="'secondary'" text="CLOSE" icon="close-outline.svg" (onbClick)="closePanel()">
 
                 </app-lbutton>
          

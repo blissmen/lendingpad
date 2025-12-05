@@ -87,6 +87,7 @@ set filterEndDraftModel(value: string | null) {
     this.mobileFilterOpen = false;
   }
   resetFilter(): void {
+    console.log("Resetting filter");
     // Clear filter fields and remove filter
     this.filterStartDraft.set(null);
     this.filterEndDraft.set(null);
@@ -107,16 +108,12 @@ set filterEndDraftModel(value: string | null) {
     }
   }
 
-  /** Item actions */
   toggleDone(item: ITodo): void {
     this.todoService.toggleDone(item);
   }
-  editName(item: ITodo): void {
-    // Enter inline name edit mode for this item
-    this.editingNameId = item.id;
-  }
+
   deleteItem(item: ITodo): void {
-    this.todoService.delete(item);
+    this.todoService.deleteTodo(item.id);
     // If the deleted item was being edited in the sidebar, close the panel
     if (this.selectedItem && this.selectedItem.id === item.id) {
       this.selectedItem = null;
