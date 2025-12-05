@@ -1,0 +1,48 @@
+.btn-primary,
+.btn-secondary {
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  text-align: center;
+  text-transform: capitalize;
+  justify-content: center;
+  margin: .2rem;
+  height: 45px;
+  min-width: 100px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #AB5DE9;
+  color: #fff;
+  border: none;
+}
+
+.btn-secondary {
+  background: #F171F3;;
+ color: #fff;
+}
+
+.icon-btn {
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  /* space between the icon and the text */
+  padding: 0.45rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.icon-btn .icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex-shrink: 0;
+}

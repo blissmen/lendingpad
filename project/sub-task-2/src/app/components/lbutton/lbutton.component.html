@@ -1,0 +1,5 @@
+<button class="icon-btn" [ngClass]="type==='primary' ? 'btn-primary' : 'btn-secondary'" (click)="onClick()">
+    <img *ngIf="icon" width="20px" [src]="icon" alt="close" />
+    {{text }}
+
+</button>
