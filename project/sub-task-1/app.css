@@ -79,6 +79,7 @@ width: 5%;
 }
 
 .filter-title {
+    display: none;
     font-size: 20px;
     font-weight: 600;
     background: #AB5DE9;
@@ -227,5 +228,86 @@ textarea:focus {
   span {
     font-size: 14px;
     color: #333;
+  }
+}
+
+
+/* Responsive design for mobile */
+@media (max-width: 600px) {
+
+  /* Show filter toggle button, style filter sidebar overlay */
+  .filter-title {
+    display: block;
+  }
+
+  .filter-container {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    margin-bottom: 0;
+    z-index: 1000;
+  }
+
+  .filters-container.open {
+    left: 0;
+  }
+
+  .filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .filters-header .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+
+  .filters-container label {
+    margin: 0.5rem 0;
+    font-weight: 600;
+  }
+
+  .filters-container .date-filters {
+    display: block;
+  }
+
+  .date-filters input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .date-separator {
+    display: none;
+  }
+
+
+
+  /* On mobile, panel becomes full-screen overlay */
+  .main-content {
+    display: block;
+    overflow: visible;
+  }
+
+  .panel-section {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 1001;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
   }
 }

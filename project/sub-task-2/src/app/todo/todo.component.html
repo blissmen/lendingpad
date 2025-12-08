@@ -2,7 +2,7 @@
     <div class="card">
         <div class="main-content">
             <div class="list-section">
-                <h1 class="header">Creation Date:</h1>
+          
                 <button class="filter-toggle" (click)="openFilterPanel()">Filters</button>
 
                 <div class="filters-container" [class.open]="mobileFilterOpen">
@@ -11,7 +11,7 @@
                         <span>FILTERS</span>
                         <button class="close-btn" (click)="mobileFilterOpen = false">&times;</button>
                     </div>
-
+      <h1 class="header">Creation Date:</h1>
                     <div class="date-filters">
                         <input type="date" [(ngModel)]="filterStartDraftModel" placeholder="mm/dd/yyyy"
                             (click)="$event.stopPropagation()">
