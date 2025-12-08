@@ -59,11 +59,11 @@
                         <tr class="row" *ngFor="let item of visibleTodos()"
                             [class.selected]="selectedItem && selectedItem.id === item.id">
                             <td>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" [checked]="item.completed" (change)="toggleDone(item)"
-                                        (click)="$event.stopPropagation()">
-                                    <span class="custom-checkbox"></span>
-                                </label>
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" [checked]="item.completed" (change)="toggleDone(item)"
+                                            (click)="$event.stopPropagation()">
+                                        <span class="custom-checkbox"></span>
+                                    </label>
                                 <!-- <input type="checkbox" [checked]="item.completed" (change)="toggleDone(item)"
                                     (click)="$event.stopPropagation()"> -->
                             </td>

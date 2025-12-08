@@ -29,8 +29,6 @@ export class TodoService extends TodoBaseService {
             t.id === id ? { ...t, ...changes } : t
         ));
     }
-
-
     // Initialize with some mock to-do items
     public pullData() {
         console.log("Pulling data...");
@@ -48,7 +46,7 @@ export class TodoService extends TodoBaseService {
 
     // Signal holding the list of to-do items
     public todos = signal<ITodo[]>([]);
-    
+
     private randomDate(start: Date, end: Date): Date {
         return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
     }
